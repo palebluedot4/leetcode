@@ -1,0 +1,16 @@
+[project]
+name = "leetcode"
+version = "0.0.0"
+description = "LeetCode solutions in Python"
+requires-python = ">=3.14"
+
+[dependency-groups]
+dev = ["ruff==0.16.5", "pyright==1.1.411"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
+ignore = ["N802", "N803", "UP006", "UP035"]
+
+[tool.pyright]
+pythonVersion = "3.14"
+typeCheckingMode = "strict"
