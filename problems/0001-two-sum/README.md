@@ -2,8 +2,8 @@
 
 https://leetcode.com/problems/two-sum/
 
-Trade the second loop for a hash map: by the time a number is visited, every
-complement that could pair with it has already been recorded, so a single pass
-finds the answer.
+Trade the second loop for a hash map: each number is recorded as it is passed,
+so the later half of any valid pair finds its partner already waiting — one
+pass instead of two.
 
 Time: O(n), Space: O(n)
