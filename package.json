@@ -1,0 +1,10 @@
+{
+  "name": "leetcode",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "2.5.11",
+    "typescript": "5.7.3"
+  },
+  "packageManager": "pnpm@11.15.1"
+}

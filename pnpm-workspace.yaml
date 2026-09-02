@@ -1,0 +1,2 @@
+# Marks this repo as the pnpm root so `pnpm install` never walks up the
+# filesystem and adopts an unrelated workspace. No sub-packages.
