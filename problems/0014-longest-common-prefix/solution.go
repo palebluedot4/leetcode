@@ -1,5 +1,7 @@
 package leetcode
 
+import "slices"
+
 func longestCommonPrefix(strs []string) string {
 	first := strs[0]
 	for i := range len(first) {
@@ -10,4 +12,14 @@ func longestCommonPrefix(strs []string) string {
 		}
 	}
 	return first
+}
+
+func longestCommonPrefixMinMax(strs []string) string {
+	lo, hi := slices.Min(strs), slices.Max(strs)
+	for i := range len(lo) {
+		if lo[i] != hi[i] {
+			return lo[:i]
+		}
+	}
+	return lo
 }
