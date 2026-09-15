@@ -9,7 +9,7 @@ dev = ["ruff==0.16.5", "pyright==1.1.411"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
-ignore = ["N802", "N803", "UP006", "UP035"]
+ignore = ["N802", "N803", "UP006", "UP035", "UP045"]
 
 [tool.pyright]
 pythonVersion = "3.14"
