@@ -25,3 +25,18 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	}
 	return dummy.Next
 }
+
+func mergeTwoListsRecursive(list1 *ListNode, list2 *ListNode) *ListNode {
+	switch {
+	case list1 == nil:
+		return list2
+	case list2 == nil:
+		return list1
+	case list1.Val <= list2.Val:
+		list1.Next = mergeTwoListsRecursive(list1.Next, list2)
+		return list1
+	default:
+		list2.Next = mergeTwoListsRecursive(list1, list2.Next)
+		return list2
+	}
+}
