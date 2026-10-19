@@ -5,7 +5,7 @@ description = "LeetCode solutions in Python"
 requires-python = ">=3.14"
 
 [dependency-groups]
-dev = ["ruff==0.16.5", "pyright==1.1.411"]
+dev = ["ruff==0.17.1", "pyright==1.1.414"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
