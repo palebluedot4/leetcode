@@ -9,6 +9,9 @@
       "preset": "recommended",
       "correctness": {
         "noUnusedVariables": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       }
     }
   },
