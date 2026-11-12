@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "description": "Pinned Node tools for formatting and linting Markdown; not part of any solution.",
+  "packageManager": "pnpm@12.18.0",
+  "devDependencies": {
+    "markdownlint-cli2": "0.24.0",
+    "prettier": "3.9.10"
+  }
+}

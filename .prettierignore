@@ -1,0 +1,3 @@
+# Written by pnpm and uv; formatting them would only create churn.
+pnpm-lock.yaml
+uv.lock

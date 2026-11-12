@@ -1,0 +1,9 @@
+// Prettier formats; markdownlint lints what formatting cannot decide. The
+// rules themselves are in .markdownlint.jsonc.
+{
+  "globs": ["**/*.md"],
+  // Skip what git ignores, node_modules above all.
+  "gitignore": true,
+  // CLAUDE.md is a single import line, as Claude Code documents it.
+  "ignores": ["CLAUDE.md"],
+}

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# The repository's only gate: there is no CI. It runs `make check` on a
+# snapshot of the index, which is exactly what the commit will contain:
+# unfinished work elsewhere in the working tree, the normal state of this
+# repository (AGENTS.md), neither fails the commit nor makes a commit pass
+# that a fresh clone would fail, as an untracked file the commit leaves out
+# could.
+
+set -euo pipefail
+
+root=$(git rev-parse --show-toplevel)
+snapshot="${TMPDIR:-/tmp}/leetcode-pre-commit"
+
+# A fixed path, emptied first, so the linters' caches, keyed by path, keep
+# working from one commit to the next.
+rm -rf "${snapshot}"
+mkdir -p "${snapshot}"
+trap 'rm -rf "${snapshot}"' EXIT
+git -C "${root}" checkout-index --all --prefix="${snapshot}/"
+
+# The installed tools come from the working tree; the snapshot has only what
+# git tracks.
+for tool in bin node_modules; do
+	if [[ -e "${root}/${tool}" ]]; then
+		ln -s "${root}/${tool}" "${snapshot}/${tool}"
+	fi
+done
+export UV_PROJECT_ENVIRONMENT="${root}/.venv"
+
+make -C "${snapshot}" --no-print-directory check

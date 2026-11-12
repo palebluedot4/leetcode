@@ -1,0 +1,65 @@
+version: "2"
+
+# Enabling is an allowlist, never `enable-all`: a linter set that grows on its
+# own turns a green check red without anyone changing a line.
+#
+# Left out on purpose, because they fight how a LeetCode solution is written
+# (AGENTS.md): varnamelen (l, r, n, dp are the field's vocabulary), mnd (the
+# constants are the problem's), wsl and nlreturn (blank-line rules), funlen,
+# gocognit, exhaustruct (&ListNode{}), gochecknoglobals (lookup tables),
+# unparam (LeetCode's signatures may hand a solution a parameter it does not
+# need), and revive's default rules, which demand doc comments.
+
+linters:
+  default: standard
+  disable:
+    # Nothing in the repository calls a solution; LeetCode does. Every entry
+    # function would be reported.
+    - unused
+  enable:
+    # Idiom and modern usage, gated by the go line in go.mod.
+    - copyloopvar
+    - gocritic
+    - modernize
+    - perfsprint
+    - predeclared
+    - unconvert
+    - usestdlibvars
+
+    # Logic.
+    - nakedret
+    - revive
+    - wastedassign
+
+    # Housekeeping.
+    - misspell
+    - nolintlint
+
+  settings:
+    misspell:
+      locale: US
+    nakedret:
+      max-func-lines: 0
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+    revive:
+      # An explicit list replaces revive's defaults, which require doc
+      # comments on exported names and packages.
+      rules:
+        - name: bool-literal-in-expr
+        - name: early-return
+        - name: empty-block
+        - name: identical-branches
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: superfluous-else
+        - name: unconditional-recursion
+        - name: unreachable-code
+        - name: var-declaration
+
+formatters:
+  enable:
+    - gofumpt
+    # A pasted solution must bring exactly the imports it uses (AGENTS.md).
+    - goimports

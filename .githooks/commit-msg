@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+#
+# Checks a commit message header against Conventional Commits 1.0.0 and this
+# repository's use of it (AGENTS.md): a known type; a scope, if any, that is a
+# language; a description that, under a language scope, names the problem's
+# four-digit number; lowercase, no trailing period, and a header of
+# at most 72 characters.
+
+set -euo pipefail
+
+readonly message_file="${1:?usage: commit-msg <path-to-commit-message>}"
+readonly max_header=72
+readonly types='build|chore|docs|feat|fix|perf|refactor|revert|style'
+readonly scopes='go|python'
+
+# The first line that is neither a comment nor blank.
+header=$(awk '!/^#/ && NF { print; exit }' "${message_file}")
+
+if [[ -z ${header} ]]; then
+	echo "The commit message is empty." >&2
+	exit 1
+fi
+
+# Git writes these itself.
+case "${header}" in
+Merge\ * | Revert\ * | fixup!\ * | squash!\ * | amend!\ *) exit 0 ;;
+esac
+
+fail() {
+	{
+		echo "$1"
+		echo
+		echo "  got: ${header}"
+		echo
+		echo "Expected: <type>[(scope)][!]: <description>"
+		echo "Types:    ${types//|/, }"
+		echo "Scopes:   ${scopes//|/, }, or none for repository-wide changes"
+		echo "Example:  feat(go): add 0217 contains duplicate"
+	} >&2
+	exit 1
+}
+
+if ! [[ ${header} =~ ^(${types})(\(([a-z]+)\))?!?:\ (.+)$ ]]; then
+	fail "The header does not follow Conventional Commits."
+fi
+scope=${BASH_REMATCH[3]}
+description=${BASH_REMATCH[4]}
+
+if [[ -n ${scope} ]]; then
+	if ! [[ ${scope} =~ ^(${scopes})$ ]]; then
+		fail "The scope must be a language."
+	fi
+	if ! [[ ${description} =~ (^|\ )[0-9]{4}(\ |$) ]]; then
+		fail "Under a language scope, the description names the problem's four-digit number."
+	fi
+fi
+if [[ ${description} =~ ^[A-Z]([^A-Z0-9]|$) ]]; then
+	fail "The description starts with a capitalized word."
+fi
+if [[ ${description} == *. ]]; then
+	fail "The description ends with a period."
+fi
+if ((${#header} > max_header)); then
+	fail "The header is ${#header} characters; the limit is ${max_header}."
+fi

@@ -1,0 +1,18 @@
+# Pinned tools: release binaries from `make tools`, Node tools from pnpm
+/bin/
+/node_modules/
+
+# Python
+__pycache__/
+/.venv/
+/.ruff_cache/
+
+# Skill eval runs
+/.claude/skills/*/evals/results/
+
+# Per-user agent state
+/.claude/settings.local.json
+/.claude/worktrees/
+
+# macOS
+.DS_Store

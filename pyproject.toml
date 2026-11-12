@@ -1,0 +1,28 @@
+[project]
+name = "leetcode"
+version = "0.0.0"
+description = "LeetCode solutions; this file pins the Python checkers and the shell tools."
+requires-python = ">=3.14"
+
+[dependency-groups]
+# shellcheck-py and shfmt-py ship ShellCheck's and shfmt's release binaries,
+# so uv.lock pins the tools that check the repository's own hooks too.
+dev = ["ruff==0.17.4", "pyright==1.1.414", "shellcheck-py==0.11.0.1", "shfmt-py==4.2.0"]
+
+[tool.ruff]
+# Prettier owns Markdown (AGENTS.md); ruff would format its code blocks too.
+# A skill's eval fixtures are written badly on purpose, for /polish to fix;
+# pyright and Go's tools already skip directories that start with a dot.
+extend-exclude = ["*.md", ".claude/skills/*/evals"]
+# What the judge implements, declared for pyright in __builtins__.pyi.
+builtins = ["guess", "MountainArray"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "A", "B", "C4", "SIM", "PIE", "PERF", "FURB", "RUF"]
+# LeetCode owns the entry method's name and parameter names, and its stubs'
+# parameters, such as ListNode's `next` (AGENTS.md).
+ignore = ["N802", "N803", "A002"]
+
+[tool.pyright]
+pythonVersion = "3.14"
+typeCheckingMode = "strict"
