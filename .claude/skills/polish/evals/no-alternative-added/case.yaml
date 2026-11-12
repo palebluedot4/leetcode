@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: no-alternative-added
+expected_outcome: |
+  /polish 0009 (Palindrome Number): the Go file reverses half the digits but
+  spells its result with an if/else and `x = x / 10`; the Python file is
+  already clean. Polish tidies the Go file, leaves the Python file alone, and
+  adds no second solution to either, though a string or arithmetic
+  alternative exists; at most it names one in a line of the report.
+context:
+  scaffold_script: place-files.sh

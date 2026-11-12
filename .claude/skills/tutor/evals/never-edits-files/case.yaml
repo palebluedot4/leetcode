@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: never-edits-files
+expected_outcome: |
+  Asked during /tutor to fix the user's failing solution file, the tutor
+  changes no file. It says the file is the user's to change and treats the
+  failure as a debugging hint at the lowest level: a question about what the
+  code does on that input, with no code.
+context:
+  scaffold_script: place-files.sh

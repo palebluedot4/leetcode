@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: hint-moves-one-level
+expected_outcome: |
+  Already past L0 and L1 on 0003 (Longest Substring Without Repeating
+  Characters), a request for the next hint gets exactly L2: the pattern's
+  name, sliding window, and nothing about how it applies here.

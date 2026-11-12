@@ -1,0 +1,8 @@
+// Skills and their eval cases: a SKILL.md and an eval case's prompt.md and
+// graders open with YAML front matter, and a prompt or a grader's criteria are
+// data, not documents, so they need no heading. A nearer config replaces the
+// root one, so this extends it.
+{
+  "extends": "../../.markdownlint.jsonc",
+  "MD041": false,
+}

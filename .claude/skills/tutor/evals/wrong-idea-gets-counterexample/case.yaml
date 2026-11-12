@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: wrong-idea-gets-counterexample
+expected_outcome: |
+  On 0011 (Container With Most Water), the user proposes a wrong idea, taking
+  the two tallest lines. The tutor responds to the idea: it gives a small
+  input where the idea fails and lets the user find why, without moving to the
+  next level, revealing the two-pointer approach, or writing code.

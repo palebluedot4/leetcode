@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: jump-to-answer
+expected_outcome: |
+  Asked straight away for the answer to 0001 (Two Sum), in Chinese, the tutor
+  jumps to L5 without arguing: a full Go solution, then the idea, why it is
+  correct, its complexity and the details that are easy to get wrong, written
+  in Chinese with the code in English.

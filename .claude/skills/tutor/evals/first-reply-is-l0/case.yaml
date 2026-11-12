@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: first-reply-is-l0
+expected_outcome: |
+  The first reply to /tutor 0217 (Contains Duplicate) is level L0: the problem
+  in plain words, what its constraints imply, edge cases and a small example,
+  with no approach and no code, ending with a question about what the user has
+  tried.

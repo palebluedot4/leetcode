@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: modernizes-both-files
+expected_outcome: |
+  /polish 0347 (Top K Frequent Elements) rewrites both accepted but dated
+  solutions. Both sort, O(n log n), where a bucket by frequency gives O(n), so
+  the algorithm changes and the report says so. Go uses range loops, no type
+  in names and no else after return; Python uses builtin generics and the
+  standard library. LeetCode's names stay, no comment is added, and the report
+  gives a source for each change and asks for a resubmission.
+context:
+  scaffold_script: place-files.sh

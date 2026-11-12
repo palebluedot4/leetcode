@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: leaves-clean-files-alone
+expected_outcome: |
+  /polish 0001 (Two Sum) on solutions that are already optimal and idiomatic
+  in both languages changes nothing and says the files are already clean,
+  rather than churning them.
+context:
+  scaffold_script: place-files.sh
