@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "ask": ["Bash(git push *)"],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Bash(git commit -n*)",
+      "Bash(git commit * -n*)",
+      "Bash(git commit *--no-v*)",
+      "Bash(git config *)",
+      "Bash(git -c *)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(git push *--force*)",
+      "Bash(git push *+*)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "excludedCommands": ["gh *", "git push *"],
+    "filesystem": {
+      "allowWrite": [
+        "~/go",
+        "~/Library/Caches/go-build",
+        "~/Library/Caches/golangci-lint",
+        "~/.cache/go-build",
+        "~/.cache/golangci-lint",
+        "~/.cache/uv",
+        "~/.cache/pyright-python"
+      ]
+    },
+    "network": {
+      "allowedDomains": ["proxy.golang.org", "sum.golang.org"]
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}\"/.claude/hooks/format.sh",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
