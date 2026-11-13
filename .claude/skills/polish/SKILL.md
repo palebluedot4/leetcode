@@ -1,7 +1,6 @@
 ---
 name: polish
-description: Rewrites an accepted LeetCode solution's solution.go and solution.py to the quality of each language's standard library, using the newest idioms the judge's release allows, and explains every change with the authority behind it. Invoked by the user as /polish <problem number> after the solutions are accepted.
-disable-model-invocation: true
+description: Rewrites an accepted LeetCode solution's solution.go and solution.py to the quality of each language's standard library, using the newest idioms the judge's release allows, and explains every change with the authority behind it. Invoked by the user as /polish <problem number> after the solutions are accepted, and by /done before it commits.
 argument-hint: <problem number, e.g. 0217>
 ---
 
