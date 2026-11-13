@@ -37,7 +37,7 @@
       ]
     },
     "network": {
-      "allowedDomains": ["proxy.golang.org", "sum.golang.org"]
+      "allowedDomains": ["proxy.golang.org", "sum.golang.org", "leetcode.com"]
     }
   },
   "hooks": {

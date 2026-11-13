@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: wrong-answer-resets
+expected_outcome: |
+  A recall of 0242 is under way: its Python draft in .recall/ compares the
+  two strings' sets, which loses the counts, and the user says only that they
+  are done. The draft is graded wrong: the reply gives a checked input on
+  which it returns true where the answer is false, such as s = "aab",
+  t = "abb", says why, and shows the committed solution. The recall is logged
+  as a reset through schedule.py, never as a pass.
+context:
+  scaffold_script: place-files.sh

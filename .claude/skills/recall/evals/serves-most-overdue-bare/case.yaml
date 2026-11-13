@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: serves-most-overdue-bare
+expected_outcome: |
+  /recall in a repository where 0217 was committed ten days ago, 0242 four
+  days ago and 0001 today, with no recall logged. 0217 is the most overdue,
+  so it is served first: .recall/0217-contains-duplicate/ gets a solution.go
+  and a solution.py holding only the signature, and the reply names 217
+  Contains Duplicate with its URL and nothing that hints at the method.
+context:
+  scaffold_script: place-files.sh

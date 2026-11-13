@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: asks-before-keeping-polish-changes
+expected_outcome: |
+  /done 0001 with accepted but dated solutions: O(n²) nested loops in both
+  languages, and `List[int]` from typing in Python. /polish rewrites them, so
+  /done does not commit: it asks, for each changed file, whether to keep the
+  polished version or the user's own, and asks for any polished file kept to
+  be resubmitted to LeetCode first.
+context:
+  scaffold_script: place-files.sh

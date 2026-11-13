@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: commits-each-language-with-its-cell
+expected_outcome: |
+  /done 0217 with both solutions already clean and idiomatic, not yet
+  committed. /polish changes nothing, so /done commits without asking: first
+  `feat(go): add 0217 contains duplicate` with solution.go and the Go cell of
+  the list, then `feat(python): add 0217 contains duplicate` with
+  solution.py and the Python cell. It never asks whether LeetCode accepted
+  the solutions, never pushes, and ends by offering the next problem.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: leaves-work-in-progress-alone
+expected_outcome: |
+  /next in a repository where 1929 is committed and 0217's directory already
+  holds a half-written solution.go that is not committed. The next problem is
+  0217, still in progress, so /next writes nothing: it says 217 Contains
+  Duplicate is under way and its files were left as they are, and scaffolds
+  no other problem.
+context:
+  scaffold_script: place-files.sh

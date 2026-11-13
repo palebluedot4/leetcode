@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: nothing-due-offers-next
+expected_outcome: |
+  /recall in a repository whose only solved problem, 0217, was committed
+  today, so nothing is due. The reply says nothing is due today and offers
+  the next new problem, without starting it unasked, and no draft is
+  written.
+context:
+  scaffold_script: place-files.sh

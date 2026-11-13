@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: grades-a-different-approach
+expected_outcome: |
+  A recall of 0217 is under way: its Go draft in .recall/ sorts the slice,
+  O(n log n), where the committed solution uses a map, O(n). The user says,
+  in Chinese, that they are done and LeetCode accepted it. The draft is
+  graded correct but different: the reply, in Chinese, shows the committed
+  solution and contrasts the two complexities; the recall is logged as a
+  pass through schedule.py; the draft is removed; and 242 Valid Anagram,
+  also due, is served next with bare drafts.
+context:
+  scaffold_script: place-files.sh

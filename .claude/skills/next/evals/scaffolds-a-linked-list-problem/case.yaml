@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: scaffolds-a-linked-list-problem
+expected_outcome: |
+  /next in a repository where every Arrays & Hashing problem but the Premium
+  271 is committed. It skips 271 and scaffolds 206 Reverse Linked List from
+  LeetCode's stubs: solution.go with only the package line and reverseList's
+  empty body, judge.go with the ListNode struct, and solution.py opening with
+  an annotated ListNode class above class Solution, in builtin generics, with
+  no comments. The reply names the problem, its URL and /tutor, and says
+  nothing about how to solve it. The case fetches the stubs from
+  leetcode.com, so it needs network access to it.
+context:
+  scaffold_script: place-files.sh

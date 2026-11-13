@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: stops-when-a-file-is-missing
+expected_outcome: |
+  /done 242 where only solution.go exists. /done stops before polishing or
+  committing anything and says that solution.py is missing.
+context:
+  scaffold_script: place-files.sh
