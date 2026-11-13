@@ -81,10 +81,14 @@ ifneq ($(GO_FILES),)
 	$(GO) vet ./...
 endif
 
+# pyright skips every directory that starts with a dot, even one its include
+# names, so the skills' scripts get a run of their own, rooted in
+# .claude/skills, whose pyrightconfig.json extends pyproject.toml.
 python-check: ## Lint and type-check Python and check its formatting
 	$(UV_RUN) ruff format --check .
 	$(UV_RUN) ruff check .
 	$(UV_RUN) pyright
+	$(UV_RUN) pyright -p .claude/skills
 
 shell-check: ## Lint the repository's shell scripts and check their formatting
 	$(UV_RUN) shellcheck $(SHELL_SCRIPTS)
@@ -119,10 +123,24 @@ node-tools:
 # are never part of the gate. Each model runs at its default effort. The cost
 # cap is the evaluator's list-price estimate per model, not a bill. They run
 # outside Claude Code's sandbox only: the evaluator starts a sandbox of its
-# own. --scaffold runs each case's place-files.sh, written here; Edit and
-# Write are granted so a case can check that /tutor never uses them and that
-# /polish does. --allow-tools takes every word after it, so it goes last.
+# own. The target is the skills directory, with the skill's evals/ picked by
+# --eval-dir, because a case may load only plugins under the target: /done's
+# cases load /polish beside /done through their prompt.md's plugins, and a
+# case that names none loads only its own skill. --scaffold runs each case's
+# place-files.sh, written here; Edit and Write are granted so a case can check
+# that /tutor never uses them and that /polish does, and Bash because /next,
+# /recall and /done run their scripts and git. The evaluator's sandbox lets
+# shell commands reach only the domains granted as WebFetch(domain:...), and
+# /next's script fetches the stubs from leetcode.com. --allow-tools takes every
+# word after it, so it goes last.
+#
+# Inside a run, the shell resolves `git` to /usr/bin/git whatever PATH says,
+# and on macOS that is an Xcode shim the evaluator's sandbox will not run; a
+# git called by its full path works. The run inherits EVAL_* variables, so
+# EVAL_GIT carries this machine's git in, and the cases that need git tell
+# the model, through append_system_prompt, to run it as "$EVAL_GIT".
 SKILL ?= tutor
+EVAL_GIT ?= $(shell command -v git)
 EVAL_MODELS ?= claude-opus-5-5 claude-sonnet-5-5
 EVAL_JUDGE_MODEL ?= claude-sonnet-5-5
 EVAL_MAX_COST_USD ?= 10
@@ -131,14 +149,14 @@ EVAL_MAX_COST_USD ?= 10
 # one falls short; the target fails at the end if any did.
 EVAL_FLAGS ?=
 
-eval: ## Run a skill's evals on each model (SKILL=tutor|polish); uses plan usage or API credit
+eval: ## Run a skill's evals on each model (SKILL=tutor|polish|next|recall|done); uses plan usage or API credit
 	@test -d .claude/skills/$(SKILL)/evals || { echo ".claude/skills/$(SKILL) has no evals/ yet" >&2; exit 1; }
 	@failed=; for model in $(EVAL_MODELS); do \
 		echo "== $(SKILL) on $$model"; \
-		DISABLE_AUTOUPDATER=1 claude plugin eval .claude/skills/$(SKILL) \
+		EVAL_GIT=$(EVAL_GIT) DISABLE_AUTOUPDATER=1 claude plugin eval .claude/skills --eval-dir $(SKILL)/evals \
 			--model $$model --judge-model $(EVAL_JUDGE_MODEL) --ablation none \
 			--max-cost-usd $(EVAL_MAX_COST_USD) --no-publish --scaffold $(EVAL_FLAGS) \
-			--allow-tools Edit Write || failed="$$failed $$model"; \
+			--allow-tools Edit Write Bash "WebFetch(domain:leetcode.com)" || failed="$$failed $$model"; \
 	done; \
 	if [ -n "$$failed" ]; then echo "$(SKILL) fell short on:$$failed" >&2; exit 1; fi
 
