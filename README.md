@@ -44,20 +44,32 @@ skipped for now. What comes after the 250 is decided when they are done.
 
 ```mermaid
 flowchart LR
-  next["Next unsolved row"] --> go["solution.go"]
+  recall["/recall: today's reviews"] --> next["/next: the next unsolved row"]
+  next --> go["solution.go"]
   go -- "Accepted" --> py["solution.py"]
-  py -- "Accepted" --> polish["/polish, optional"]
-  polish --> commit["One commit per language"]
+  py -- "Accepted" --> done["/done: /polish, then one commit per language"]
+  done --> next
   tutor(["/tutor: hints, one level at a time"]) -.-> go
 ```
 
-- **`/tutor <number>`** is a Claude Code skill that restates the problem and
-  then gives graduated hints, from a nudging question to a full explained
-  solution, one level per request. It writes no code before the last level
-  and never touches the files.
+Each step is a Claude Code skill:
+
+- **`/recall`** serves the accepted problems due today, one at a time, as a
+  blank stub to solve again, and grades the attempt against the committed
+  solution. A problem comes back 3, 7 and 21 days after it was last written,
+  counted from the day it actually was, at most five a day.
+- **`/next`** scaffolds the next unsolved problem of the list from
+  LeetCode's own stubs, and skips Premium problems.
+- **`/tutor <number>`** restates the problem and then gives graduated hints,
+  from a nudging question to a full explained solution, one level per
+  request. It writes no code before the last level and never touches the
+  files.
 - **`/polish <number>`** rewrites an accepted solution to the standard of the
   language's own library, the newest idiom the judge allows, and explains
   each change with its source. Whatever it changes is submitted again.
+- **`/done <number>`** runs `/polish`, asks before keeping anything it
+  changed, and commits each language on its own, filling its cell in the
+  list.
 
 ## What a problem looks like
 
@@ -92,8 +104,9 @@ Every checker's version is pinned too, in the [Makefile](Makefile),
 
 ## Getting started
 
-With Go, [uv](https://docs.astral.sh/uv/), Node.js, pnpm, jq and
-[Claude Code](https://code.claude.com/) installed:
+With [Go](https://go.dev/), [uv](https://docs.astral.sh/uv/),
+[Node.js](https://nodejs.org/), [pnpm](https://pnpm.io/),
+[jq](https://jqlang.org/) and [Claude Code](https://code.claude.com/) installed:
 
 ```sh
 make setup   # once per clone: pinned tools and git hooks

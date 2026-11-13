@@ -25,6 +25,10 @@ If a tool is missing, say so rather than installing it.
 | `__builtins__.pyi`        | Python declarations of the functions and classes the judge implements, for the checkers.                    |
 | `.claude/skills/tutor/`   | `/tutor`: graduated hints for the problem being solved; its evals, and their results in `evals/results.md`. |
 | `.claude/skills/polish/`  | `/polish`: rewrites an accepted solution to standard-library quality; its evals and results likewise.       |
+| `.claude/skills/next/`    | `/next`: scaffolds the next unsolved problem from LeetCode's stubs; its evals likewise.                     |
+| `.claude/skills/recall/`  | `/recall`: the day's re-solving of accepted problems, on a 3, 7 and 21 day schedule; its evals likewise.    |
+| `.claude/skills/done/`    | `/done`: polishes an accepted problem and commits each language with its cell; its evals likewise.          |
+| `.recall/`                | Gitignored: `/recall`'s log, the schedule's only state, and the draft being recalled.                       |
 
 ## The core test
 
@@ -168,13 +172,16 @@ version-specific APIs but cites guides that may have changed.
 
 ## Working a problem
 
-1. Take the next unsolved row in the current list.
-2. Write `solution.go`. `/tutor <number>` gives hints, one level at a time.
-3. Submit to LeetCode. Accepted is the definition of done.
-4. Write `solution.py` from scratch in Python's own idiom; submit it.
-5. Optionally `/polish <number>`; resubmit whatever it changed.
-6. Commit each language on its own, filling that language's cell in the list
-   with a link to the file: `[✓](../problems/0217-contains-duplicate/solution.go)`.
+1. `/recall` first: the accepted problems due today, each re-solved from a
+   blank stub, at most five a day.
+2. `/next` scaffolds the next unsolved row in the current list.
+3. Write `solution.go`. `/tutor <number>` gives hints, one level at a time.
+4. Submit to LeetCode. Accepted is the definition of done.
+5. Write `solution.py` from scratch in Python's own idiom; submit it.
+6. `/done <number>` runs `/polish`, and you resubmit whatever it changed;
+   then it commits each language on its own, filling that language's cell
+   in the list with a link to the file:
+   `[✓](../problems/0217-contains-duplicate/solution.go)`.
 
 ## Commits
 
@@ -193,10 +200,9 @@ Conventional Commits 1.0.0, checked by `.githooks/commit-msg`.
 
 ## Deliberately not doing
 
-| Not doing                         | Until                                                          |
-| --------------------------------- | -------------------------------------------------------------- |
-| A third language                  | Learning one.                                                  |
-| A list after NeetCode 250         | It is finished; then choose, e.g. 0x3F's rating-ordered lists. |
-| Spaced re-solving or a review log | A pattern keeps being forgotten.                               |
-| A generated index                 | Hand-filling `lists/` becomes the bottleneck.                  |
-| CI                                | Someone other than the maintainer contributes.                 |
+| Not doing                 | Until                                                          |
+| ------------------------- | -------------------------------------------------------------- |
+| A third language          | Learning one.                                                  |
+| A list after NeetCode 250 | It is finished; then choose, e.g. 0x3F's rating-ordered lists. |
+| A generated index         | Hand-filling `lists/` becomes the bottleneck.                  |
+| CI                        | Someone other than the maintainer contributes.                 |
