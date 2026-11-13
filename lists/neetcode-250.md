@@ -4,30 +4,30 @@
 
 ## Arrays & Hashing
 
-| #   | Problem                                                                                                      | Difficulty | Go  | Python |
-| --- | ------------------------------------------------------------------------------------------------------------ | ---------- | --- | ------ |
-| 1   | [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)                        | Easy       |     |        |
-| 2   | [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)                                 | Easy       |     |        |
-| 3   | [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)                                           | Easy       |     |        |
-| 4   | [1. Two Sum](https://leetcode.com/problems/two-sum/)                                                         | Easy       |     |        |
-| 5   | [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)                            | Easy       |     |        |
-| 6   | [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)                                          | Medium     |     |        |
-| 7   | [27. Remove Element](https://leetcode.com/problems/remove-element/)                                          | Easy       |     |        |
-| 8   | [169. Majority Element](https://leetcode.com/problems/majority-element/)                                     | Easy       |     |        |
-| 9   | [705. Design HashSet](https://leetcode.com/problems/design-hashset/)                                         | Easy       |     |        |
-| 10  | [706. Design HashMap](https://leetcode.com/problems/design-hashmap/)                                         | Easy       |     |        |
-| 11  | [912. Sort an Array](https://leetcode.com/problems/sort-an-array/)                                           | Medium     |     |        |
-| 12  | [75. Sort Colors](https://leetcode.com/problems/sort-colors/)                                                | Medium     |     |        |
-| 13  | [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)                       | Medium     |     |        |
-| 14  | [271. Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/) 🔒                | Medium     |     |        |
-| 15  | [304. Range Sum Query 2D - Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/)           | Medium     |     |        |
-| 16  | [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)             | Medium     |     |        |
-| 17  | [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)                                              | Medium     |     |        |
-| 18  | [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)             | Medium     |     |        |
-| 19  | [122. Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/) | Medium     |     |        |
-| 20  | [229. Majority Element II](https://leetcode.com/problems/majority-element-ii/)                               | Medium     |     |        |
-| 21  | [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)                           | Medium     |     |        |
-| 22  | [41. First Missing Positive](https://leetcode.com/problems/first-missing-positive/)                          | Hard       |     |        |
+| #   | Problem                                                                                                      | Difficulty | Go                                                       | Python |
+| --- | ------------------------------------------------------------------------------------------------------------ | ---------- | -------------------------------------------------------- | ------ |
+| 1   | [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)                        | Easy       | [✓](../problems/1929-concatenation-of-array/solution.go) |        |
+| 2   | [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)                                 | Easy       |                                                          |        |
+| 3   | [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)                                           | Easy       |                                                          |        |
+| 4   | [1. Two Sum](https://leetcode.com/problems/two-sum/)                                                         | Easy       |                                                          |        |
+| 5   | [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)                            | Easy       |                                                          |        |
+| 6   | [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)                                          | Medium     |                                                          |        |
+| 7   | [27. Remove Element](https://leetcode.com/problems/remove-element/)                                          | Easy       |                                                          |        |
+| 8   | [169. Majority Element](https://leetcode.com/problems/majority-element/)                                     | Easy       |                                                          |        |
+| 9   | [705. Design HashSet](https://leetcode.com/problems/design-hashset/)                                         | Easy       |                                                          |        |
+| 10  | [706. Design HashMap](https://leetcode.com/problems/design-hashmap/)                                         | Easy       |                                                          |        |
+| 11  | [912. Sort an Array](https://leetcode.com/problems/sort-an-array/)                                           | Medium     |                                                          |        |
+| 12  | [75. Sort Colors](https://leetcode.com/problems/sort-colors/)                                                | Medium     |                                                          |        |
+| 13  | [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)                       | Medium     |                                                          |        |
+| 14  | [271. Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/) 🔒                | Medium     |                                                          |        |
+| 15  | [304. Range Sum Query 2D - Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/)           | Medium     |                                                          |        |
+| 16  | [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)             | Medium     |                                                          |        |
+| 17  | [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)                                              | Medium     |                                                          |        |
+| 18  | [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)             | Medium     |                                                          |        |
+| 19  | [122. Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/) | Medium     |                                                          |        |
+| 20  | [229. Majority Element II](https://leetcode.com/problems/majority-element-ii/)                               | Medium     |                                                          |        |
+| 21  | [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)                           | Medium     |                                                          |        |
+| 22  | [41. First Missing Positive](https://leetcode.com/problems/first-missing-positive/)                          | Hard       |                                                          |        |
 
 ## Two Pointers
 
