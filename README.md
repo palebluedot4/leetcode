@@ -6,8 +6,8 @@ problem number. Each problem keeps one final solution per language, each
 written in its own language's idiom, never translated from the other.
 
 > [!IMPORTANT]
-> There are no tests. Every file pastes into LeetCode unchanged, and the
-> judge's Accepted is what makes a solution correct.
+> There are no tests. Every solution pastes into LeetCode as is, apart from
+> Go's `package` line; the judge's Accepted is what makes a solution correct.
 
 ## The path
 
@@ -52,7 +52,7 @@ flowchart LR
   tutor(["/tutor: hints, one level at a time"]) -.-> go
 ```
 
-Each step is a Claude Code skill:
+The slash commands are Claude Code skills:
 
 - **`/recall`** serves the accepted problems due today, one at a time, as a
   blank stub to solve again, and grades the attempt against the committed
@@ -91,12 +91,12 @@ The judge's language versions are the ceiling. Each toolchain is pinned to
 them, so newer syntax or a newer library call fails locally instead of at the
 judge.
 
-| Language | Judge       | Formatted by       | Checked by                                 |
-| -------- | ----------- | ------------------ | ------------------------------------------ |
-| Go       | Go 1.27     | gofumpt, goimports | golangci-lint (with `modernize`), `go vet` |
-| Python   | Python 3.14 | ruff               | ruff, pyright in strict mode               |
-| Markdown | n/a         | Prettier           | markdownlint                               |
-| Shell    | n/a         | shfmt              | ShellCheck                                 |
+| Language             | Judge       | Formatted by       | Checked by                                 |
+| -------------------- | ----------- | ------------------ | ------------------------------------------ |
+| Go                   | Go 1.27     | gofumpt, goimports | golangci-lint (with `modernize`), `go vet` |
+| Python               | Python 3.14 | ruff               | ruff, pyright in strict mode               |
+| Markdown, YAML, JSON | n/a         | Prettier           | Prettier, markdownlint for Markdown        |
+| Shell                | n/a         | shfmt              | ShellCheck                                 |
 
 Every checker's version is pinned too, in the [Makefile](Makefile),
 [pyproject.toml](pyproject.toml) with `uv.lock`, and
