@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: names-fields-for-their-meaning
+expected_outcome: |
+  /polish 0706 (Design HashMap) on accepted solutions whose algorithm is fine
+  but whose wide-scope names are letters: Go's struct field is `b` and its
+  entry's field is `val` while LeetCode's parameter is `value`; Python's
+  instance attribute is a public `self.b`. Polish renames the field to a word
+  such as `buckets`, the entry field to `value`, and the attribute to a word
+  with one leading underscore, keeps LeetCode's names, and cites a source for
+  each rename.
+context:
+  scaffold_script: place-files.sh

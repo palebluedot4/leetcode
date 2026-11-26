@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: one-name-one-meaning
+expected_outcome: |
+  /polish 0912 (Sort an Array, which forbids built-in sorts) on two accepted
+  heap sorts. The Go file is already clean. The Python file's nested
+  sift_down takes a parameter `n` for the heap's end while the method's own
+  `n` is the list's length, and it counts down with `range(..., -1, -1)`.
+  Polish leaves the Go file alone, renames the nested parameter so each name
+  has one meaning, counts down with `reversed(range(...))`, keeps the heap
+  sort rather than calling a built-in sort, and cites a source for each
+  change.
+context:
+  scaffold_script: place-files.sh

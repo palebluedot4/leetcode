@@ -55,6 +55,13 @@ solutions, never translations of each other.
   supports, the standard library over hand-rolled code, names in the
   language's own conventions. The reference files say which tools track the
   newest idiom and list, with sources, the rules no tool checks.
+- **What the problem builds stays built.** A solution that implements by
+  hand something the standard library has, such as a sort, a heap or a hash
+  table, does so because the problem asks for it, as a problem that forbids
+  built-in sorts or built-in hash tables does. Never replace that
+  implementation with the library's; polish only how it is written. "The
+  standard library over hand-rolled code" applies to helpers around the
+  problem, never to the thing the problem asks you to build.
 - **Keep what is already right.** A change needs a reason a style authority
   would give. If a file is already clean, say so and do not touch it: no
   Edit, and no Write, not even of the same content, since a rewrite is
@@ -84,26 +91,36 @@ changed, not a source; the source is the label's job.
   goes away only because of it goes in the same bullet: an import, a
   comparator or a lambda the new code no longer needs, and any loop or
   variable that existed only to serve the old algorithm, such as the loop
-  that gathered keys for a sort that is gone. Its old flaws need no source
-  of their own, since the code that had them no longer exists. A change you would
-  make even under the old algorithm, such as `Counter` for a hand-built
-  count, is not part of it and gets its own bullet.
+  that gathered keys for a sort that is gone. Its old flaws are not changes:
+  give them no bullet and no source of their own, not even to say what a
+  linter would have reported, since the code that had them no longer
+  exists. A change you would make even under the old algorithm, such as
+  `Counter` for a hand-built count, is not part of it and gets its own
+  bullet.
 - **Every other change** names one authority a reader can look up:
   - a rule in `AGENTS.md`;
+  - a rule a reference file marks as this repository's own, cited by the
+    file and the rule (`references/python.md`, this repository's
+    vocabulary). Every other rule in a reference file names the authority
+    it comes from; cite that authority, not the reference file;
   - a section of the language spec, Effective Go, Go Code Review Comments
     or a Google style guide, by the names the reference files use;
-  - a PEP, or a library documentation page (`collections.Counter`, not
-    "the standard library docs");
+  - a PEP, a section of the Python Tutorial or FAQ, or a library
+    documentation page (`collections.Counter`, not "the standard library
+    docs");
   - a linter by the name `.golangci.yml` enables (`gocritic`, `modernize`,
-    `staticcheck`), or a ruff rule set by the prefix `pyproject.toml`
-    selects (ruff `UP`, pyupgrade);
+    `staticcheck`), with the check's name when the linter runs many
+    (gocritic's `assignOp`, revive's `increment-decrement`), or a ruff rule
+    set by the prefix `pyproject.toml` selects (ruff `UP`, pyupgrade);
+  - a formatter `make check` runs, by name: `gofumpt` or `goimports`, which
+    `.golangci.yml` enables, or `ruff format`;
   - what pyright's strict mode requires.
 - **Names, not codes.** Cite a linter by name, never by a check code such as
   S1005 or UP006, unless this session's tool output showed you the code:
   codes are where citations go wrong, and a name is enough to look one up.
-  Never hedge one ("S1005-adjacent", "S1011-style"). What a formatter does
-  on its own, such as `gofmt -s`, is not an authority; cite the linter that
-  reports the same thing.
+  Never hedge one ("S1005-adjacent", "S1011-style"). A formatter that
+  `make check` does not run, such as `gofmt -s`, is not an authority: cite
+  the linter or enabled formatter that reports the same thing.
 - **Only what you are sure of.** A wrong citation is worse than a plain
   one; when unsure of a section, name the document alone.
 
@@ -133,9 +150,26 @@ For example, under `## solution.py`:
 ```
 
 A file left as it was gets one line saying so and why, and no bullets.
-Anything else worth saying, such as that `make check` could not run, goes
-before the last line; nothing comes after it, not even the commit message,
-which `AGENTS.md` already covers.
+Bullets under a file's heading are its changes and nothing else. Anything
+else worth saying, such as that `make check` could not run, is a paragraph
+after the last file's section, never a bullet, and goes before the last
+line; nothing comes after it, not even a clause on the same line or the
+commit message, which `AGENTS.md` already covers. When only one file
+changed, the last line names it instead:
+`Resubmit solution.py to LeetCode before committing.`
 
 The last line matters: the judge is the only test in this repository, and a
 polished file has not been judged yet.
+
+Before you send the report, read it once more, bullet by bullet, and fix
+any bullet that fails one of these:
+
+1. It describes a change to the file, not an old flaw the algorithm change
+   removed, and not a note.
+2. It ends with `Complexity:` and an old and a new complexity, or with
+   `Source:` and its source: the label and what follows it are the last
+   words of the bullet, so any explanation comes before the label.
+3. Its source is one from the list above, not a formatter `make check`
+   does not run, a hedged check code, or a reason with no label. A
+   reference file alone is a source only for a rule it marks as this
+   repository's own.
