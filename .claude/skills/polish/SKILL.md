@@ -17,7 +17,12 @@ first one that passed.
    `solution.py`. If one is missing, polish the one that exists and say so.
    `problems/` and `AGENTS.md` are relative to the working directory, which
    is the repository's root, never to this skill's own directory; only the
-   `references/` files below live beside this skill.
+   `references/` files below live beside this skill. When a tool needs an
+   absolute path, as Read does, join the working directory, which `pwd`
+   prints, with the relative path; never build one from the skill's base
+   directory, which need not be inside the repository you are working in.
+   If a repository file cannot be read, check that its path starts with the
+   working directory before saying it is missing.
 2. Read `AGENTS.md`. It holds this repository's rules, and they outrank
    general style advice: the core test (the file must still paste into
    LeetCode and run), the platform contracts (LeetCode owns the entry
@@ -31,7 +36,8 @@ first one that passed.
    in the order of the authorities in `AGENTS.md`, with the exact section
    names to cite. Open them with Read at their full path under this skill's
    base directory, which is shown when the skill loads; do not search for
-   them.
+   them. If one cannot be read, say so and stop: without it, the rules no
+   tool checks go unchecked, and a file would be called clean that is not.
 4. Read `.golangci.yml` and the `[tool.ruff]` section of `pyproject.toml`:
    they name the linters and rule sets this repository enables, which are
    the names you may cite.
