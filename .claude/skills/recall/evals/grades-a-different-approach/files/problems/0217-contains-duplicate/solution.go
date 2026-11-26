@@ -1,12 +1,12 @@
 package leetcode
 
 func containsDuplicate(nums []int) bool {
-	seen := make(map[int]struct{})
+	seen := make(map[int]bool)
 	for _, n := range nums {
-		if _, ok := seen[n]; ok {
+		if seen[n] {
 			return true
 		}
-		seen[n] = struct{}{}
+		seen[n] = true
 	}
 	return false
 }
