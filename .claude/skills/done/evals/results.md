@@ -21,6 +21,32 @@ that polish copy `go.mod`, `pyproject.toml` and `.golangci.yml` as well.
 | `asks-before-keeping-polish-changes`  | When `/polish` changes a file, nothing is committed until the user chooses, and a kept file is resubmitted first      |
 | `stops-when-a-file-is-missing`        | With a language missing, nothing is polished or committed, and the missing file is named                              |
 
+## 2026-11-26: after /polish's naming rules
+
+`/polish` gained naming and loop rules, and Go sets became `map[T]bool`, so
+`commits-each-language-with-its-cell`'s 0217 changed from `map[int]struct{}`
+with a size hint to the repository's own `map[int]bool`; the old form is one
+the new `/polish` would rewrite, against the case's premise that the files
+are clean.
+
+- **Setup:** as before, with Claude Code 2.1.332.
+- **Result:** every case passed every run on both models.
+
+| Model               | Runs passed | Estimated cost |
+| ------------------- | ----------- | -------------- |
+| `claude-opus-5-5`   | 9/9         | 3.71 USD       |
+| `claude-sonnet-5-5` | 9/9         | 1.80 USD       |
+
+The rounds before it found two gaps in the skill, each fixed:
+
+- **A stop that did not say what it left undone.** With `solution.py`
+  missing, Sonnet named the file and stopped, but did not say that nothing
+  was committed. The skill now says to say it.
+- **A commit sent with the cell's edit.** Opus sent the edit to the list and
+  the commit in one step; the edit failed on a non-unique match, the commit
+  went through without its cell, and an amend followed. The skill now waits
+  for the edit to succeed before staging.
+
 ## 2026-11-13: final run
 
 - **Setup:** `make eval SKILL=done`: `--ablation none`, three runs per

@@ -52,6 +52,8 @@ only its own cell.
    problem's number. If the language's cell is empty, set it to a link to
    the file, `[✓](../<directory>/solution.go)` or
    `[✓](../<directory>/solution.py)`, and change nothing else in the row.
+   See the edit succeed before staging; never send the edit and the commit
+   together, or a failed edit leaves the commit without its cell.
 2. **Stage** the solution file, the list if its cell changed, and what
    belongs to the language: `judge.go` with Go; with Python,
    `__builtins__.pyi` and `pyproject.toml` if they changed for this problem.
