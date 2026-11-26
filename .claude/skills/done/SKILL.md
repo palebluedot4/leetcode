@@ -17,8 +17,9 @@ Paths here are relative to the working directory, the repository's root.
 ## 1. Check the ground
 
 - Find `problems/<number>-*/` from `$ARGUMENTS`, the number zero-padded to
-  four digits. If `solution.go` or `solution.py` is missing, say which and
-  stop: each language is accepted on its own, and both come first.
+  four digits. If `solution.go` or `solution.py` is missing, say which, say
+  that nothing was polished or committed, and stop: each language is
+  accepted on its own, and both come first.
 - `git diff --cached --name-only` must print nothing, because the commits
   below hold exactly what this skill stages. If something is staged, name it
   and stop.
