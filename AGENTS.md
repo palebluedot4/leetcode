@@ -50,8 +50,8 @@ Agents trained on production code will try to add all of these. Do not.
   input validation are noise.
 - **No abstraction across problems**: no shared helpers or packages. Each file
   stands alone, which is what makes it pasteable.
-- **No long names for short ideas.** `l`, `r`, `lo`, `hi`, `dp`, `memo`, `n`,
-  `k` are the field's vocabulary.
+- **No long names for short ideas.** `lo`, `hi`, `dp`, `memo`, `n`, `k` are
+  the field's vocabulary.
 - **No drafts.** Only the final solution is kept.
 
 ## Layout and naming
@@ -72,13 +72,14 @@ Where they disagree, the higher one wins, within what the core test permits.
 - **Go:** the language spec, `gofmt`, `go vet`; Effective Go; Go Code Review
   Comments; then the Google Go Style Guide (Guide, then Decisions, then Best
   Practices).
-- **Python:** the language reference and PEP 8; the `typing` documentation;
-  then the Google Python Style Guide.
+- **Python:** the language reference and PEP 8; the `typing` and standard
+  library documentation, and the Python Tutorial and FAQ where they state an
+  idiom; then the Google Python Style Guide.
 
 Three rules on top:
 
 - **Idiomatic, not translated.** The two files read as two native solutions.
-  If Python's answer is a `set` where Go's is a `map[T]struct{}`, that is
+  If Python's answer is a `set` where Go's is a `map[T]bool`, that is
   correct; a Go loop transcribed into Python is a bug.
 - **The newest idiom the judge's release allows.** `modernize` in
   golangci-lint and ruff's `UP` and `FURB` rules enforce much of this; the
